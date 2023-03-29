@@ -28,6 +28,11 @@ use Symfony\Component\Routing\Loader\YamlFileLoader;
             'events' => Event::all()
         ]);
     });
+    Route::get('/events', function () {
+        return view('events', [
+            'events' => Event::all()
+        ]);
+    });
     
     Route::get('events/{event}', function ($id) {
         return view('event', [

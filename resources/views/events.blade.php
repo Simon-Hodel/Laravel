@@ -2,7 +2,7 @@
     @foreach($events as $event)
     <article>
         <h1>
-            <a href="/events/{{ $post->id }}">
+            <a href="/events/{{ $event->id }}">
                 {{$event->title}}
             </a>
         </h1>
