@@ -2,7 +2,8 @@
 
     use App\Http\Controllers\RegisterController;
     use App\Models\Application;
-    use App\Models\Event;
+use App\Models\Category;
+use App\Models\Event;
     use Illuminate\Support\Facades\File;
     use Spatie\YamlFrontMatter\YamlFrontMatter;
     use Illuminate\Support\Facades\Route;
@@ -24,21 +25,25 @@ use Symfony\Component\Routing\Loader\YamlFileLoader;
     */
 
     Route::get('/', function () {
-        return view('events', [
-            'events' => Event::all()
-        ]);
+        return redirect('/events');
     });
     Route::get('/events', function () {
         return view('events', [
-            'events' => Event::all()
+            'events' => Event::with('category')->get()
         ]);
     });
     
-    Route::get('events/{event}', function ($id) {
+    Route::get('events/{event:slug}', function (Event $event) {
         return view('event', [
-            'event' => Event::findOrFail($id)
+            'event' => $event
         ]);
-    });
+    }); 
+
+    Route::get('categories/{category:name}', function (Category $category) {
+        return view('events', [
+            'events' => $category->events
+        ]);
+    }); 
 
 
 

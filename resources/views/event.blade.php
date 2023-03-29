@@ -2,18 +2,18 @@
 <x-layout>
 <article>
         <h1>
-            <a href="/events/{{ $event->id }}">
+            <a>
                 {{$event->title}}
             </a>
         </h1>
         <div>
-            {{$event->body}}
+           <a>{{$event->body}}</a> 
         </div>
         <div>
-            {{$event->host}}
+           <a>Host: {{$event->host}}</a> 
         </div>
         <div>
-            {{$event->date}}
+        <a>Date: {{$event->date}}</a> 
         </div>
     </article>
   <a href="/events">go back</a>
